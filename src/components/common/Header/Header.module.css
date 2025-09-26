@@ -1,0 +1,96 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #eaeaea;
+  gap: 2rem;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.searchContainer {
+  display: flex;
+  flex-grow: 1;
+  max-width: 600px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+}
+
+.categorySelect {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+}
+
+.searchButton {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: white;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.userActions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.userActions a {
+  text-decoration: none;
+  color: #333;
+}
+
+.cartLink {
+  font-weight: bold;
+}
+
+.profileDropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.profileDropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropdownContent a, .dropdownContent button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.dropdownContent a:hover, .dropdownContent button:hover {
+  background-color: #f1f1f1;
+}
