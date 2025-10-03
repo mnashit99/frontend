@@ -1,0 +1,3 @@
+Backend to-do list based on frontend development needs:
+
+1. [Category Entity]: Add an 'imageUrl' field (string) to the 'Category' entity to store a URL for the category's picture.

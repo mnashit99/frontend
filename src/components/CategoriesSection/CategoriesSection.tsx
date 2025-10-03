@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../services/api';
 import styles from './CategoriesSection.module.css';
 
 interface Category {
   id: string;
   name: string;
-  // Add other category properties if available from backend
+  parent?: Category | null;
+  imageUrl?: string;
 }
 
 const CategoriesSection: React.FC = () => {
@@ -16,8 +18,10 @@ const CategoriesSection: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
+        setLoading(true);
         const response = await api.get<Category[]>('/categories');
-        setCategories(response.data);
+        const parentCategories = response.data.filter(cat => !cat.parent);
+        setCategories(parentCategories);
       } catch (err: any) {
         setError(err.response?.data?.message || 'Failed to fetch categories');
       } finally {
@@ -29,11 +33,38 @@ const CategoriesSection: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div className={styles.loading}>Loading categories...</div>;
+    return (
+      <section className={styles.categoriesSection}>
+        <h2>Shop by Category</h2>
+        <div className={styles.loading}>Loading categories...</div>
+      </section>
+    );
   }
 
   if (error) {
-    return <div className={styles.error}>Error: {error}</div>;
+    return (
+      <section className={styles.categoriesSection}>
+        <h2>Shop by Category</h2>
+        <div className={styles.error}>
+          <p>Error: {error}</p>
+          <button 
+            onClick={() => window.location.reload()} 
+            className={styles.retryButton}
+          >
+            Try Again
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  if (categories.length === 0) {
+    return (
+      <section className={styles.categoriesSection}>
+        <h2>Shop by Category</h2>
+        <div className={styles.empty}>No categories available</div>
+      </section>
+    );
   }
 
   return (
@@ -41,10 +72,24 @@ const CategoriesSection: React.FC = () => {
       <h2>Shop by Category</h2>
       <div className={styles.categoriesGrid}>
         {categories.map((category) => (
-          <div key={category.id} className={styles.categoryCard}>
-            <h3>{category.name}</h3>
-            {/* Add category image or description here if available */}
-          </div>
+          <Link 
+            to={`/category/${category.id}`} 
+            key={category.id} 
+            className={styles.categoryCard}
+          >
+            <div className={styles.imageContainer}>
+              <img 
+                src={category.imageUrl || '/images/category-placeholder.jpg'} 
+                alt={category.name} 
+                className={styles.categoryImage} 
+                loading="lazy"
+              />
+              <div className={styles.overlay}></div>
+            </div>
+            <div className={styles.categoryName}>
+              <h3>{category.name}</h3>
+            </div>
+          </Link>
         ))}
       </div>
     </section>

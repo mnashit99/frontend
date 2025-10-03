@@ -1,0 +1,43 @@
+
+.pageContainer {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.loading,
+.error {
+  font-size: 1.5rem;
+  color: #555;
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.loadMoreContainer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.loadMoreButton {
+  padding: 0.8rem 2.5rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.loadMoreButton:hover {
+  background-color: #0056b3;
+}
+

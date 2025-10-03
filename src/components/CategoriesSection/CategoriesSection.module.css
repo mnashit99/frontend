@@ -1,44 +1,124 @@
 .categoriesSection {
-  padding: 3rem 2rem;
+  padding: 4rem 2rem;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: #f8fafc;
 }
 
 .categoriesSection h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: #333;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  margin-bottom: 3rem;
+  color: #2d3748;
+  font-weight: 700;
 }
 
 .categoriesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .categoryCard {
   background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  position: relative;
+  display: block;
 }
 
 .categoryCard:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
 }
 
-.categoryCard h3 {
-  font-size: 1.3rem;
-  color: #007bff;
+.imageContainer {
+  position: relative;
+  overflow: hidden;
+  height: 250px;
+}
+
+.categoryImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.categoryCard:hover .categoryImage {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 100%);
+  transition: background 0.3s ease;
+}
+
+.categoryCard:hover .overlay {
+  background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.2) 100%);
+}
+
+.categoryName {
+  padding: 1.5rem 1rem;
+  text-align: center;
+}
+
+.categoryName h3 {
   margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2d3748;
 }
 
-.loading, .error {
+.loading,
+.error,
+.empty {
   font-size: 1.2rem;
-  color: #555;
+  color: #718096;
   margin-top: 2rem;
+  padding: 2rem;
+}
+
+.error {
+  color: #e53e3e;
+}
+
+.retryButton {
+  margin-top: 1rem;
+  padding: 0.5rem 1.5rem;
+  background-color: #4299e1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.retryButton:hover {
+  background-color: #3182ce;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .categoriesSection {
+    padding: 3rem 1rem;
+  }
+  
+  .categoriesGrid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .imageContainer {
+    height: 200px;
+  }
 }
